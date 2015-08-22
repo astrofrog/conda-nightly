@@ -11,7 +11,7 @@ install:
     - conda update conda
 
     - # Install conda builder
-    - conda-build anaconda-client
+    - conda install conda-build anaconda-client
 
     - # Install matplotlib dependencies
     - conda install --yes matplotlib
