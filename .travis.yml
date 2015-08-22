@@ -1,25 +1,28 @@
 language: objective-c
 
-before_install:
-    
-    # Install conda
-    wget http://repo.continuum.io/miniconda/Miniconda-3.7.3-MacOSX-x86_64.sh -O miniconda.sh
-    chmod +x miniconda.sh
-    ./miniconda.sh -b
-    export PATH=$HOME/miniconda/bin:$PATH
-    conda config --set always_yes true
-    conda update conda
-    
-    # Install conda builder
-    conda-build anaconda-client
-    
-    # Install matplotlib dependencies
-    conda install --yes matplotlib
-    conda remove --yes matplotlib
-    
-    # Install pkg-config
-    conda install --yes -c asmeurer pkg-config
-    
-    # Make sure librairies will be available
-    export DYLD_FALLBACK_LIBRARY_PATH=$HOME/miniconda/lib
+install:
+
+    - # Install conda
+    - wget http://repo.continuum.io/miniconda/Miniconda-3.7.3-MacOSX-x86_64.sh -O miniconda.sh
+    - chmod +x miniconda.sh
+    - ./miniconda.sh -b
+    - export PATH=$HOME/miniconda/bin:$PATH
+    - conda config --set always_yes true
+    - conda update conda
+
+    - # Install conda builder
+    - conda-build anaconda-client
+
+    - # Install matplotlib dependencies
+    - conda install --yes matplotlib
+    - conda remove --yes matplotlib
+
+    - # Install pkg-config
+    - conda install --yes -c asmeurer pkg-config
+
+    - # Make sure librairies will be available
+    - export DYLD_FALLBACK_LIBRARY_PATH=$HOME/miniconda/lib
+
+script:
+    - conda build matplotlib
     
